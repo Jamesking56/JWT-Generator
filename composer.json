@@ -1,0 +1,22 @@
+{
+    "name": "jamesking56/jwt-generator",
+    "description": "A public JWT encoder / decoder written in PHP.",
+    "require": {
+        "firebase/php-jwt": "~1.0"
+    },
+    "require-dev": {
+        "codeception/codeception": "~2.0"
+    },
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "James King",
+            "email": "james@jamesking56.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "JWT-Generator\\": "src/"
+        }
+    }
+}
