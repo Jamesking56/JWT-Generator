@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>JWT Encoder / Decoder</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.2/lumen/bootstrap.min.css">
+    <style>
+        body { padding-top: 70px; }
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">JWT Generator</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="https://github.com/Jamesking56/JWT-Generator">GitHub</a></li>
+                </ul>
+                <p class="navbar-text navbar-right">Created by <a href="http://www.Jamesking56.co.uk" class="navbar-link">James King</a></p>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <!-- Hidden alert boxes ready to go! -->
+            <div class="alert alert-success alert-dismissible hidden" id="alert-token-created" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>JSON Web Token created.</strong> See the output at the bottom of the page.
+            </div>
+            <div class="alert alert-success alert-dismissible hidden" id="alert-token-decoded" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Token decoded.</strong> Please see output at the bottom of the page.
+            </div>
+            <div class="alert alert-success alert-dismissible hidden" id="alert-error" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Error occurred.</strong> Please fix any form fields with issues.
+            </div>
+
+            <div class="col-md-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">Encode JWT</div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" id="encode-form">
+                            <legend>Header</legend>
+                            <div class="form-group">
+                                <label for="algorithm" class="col-sm-2 control-label">Algorithm</label>
+                                <div class="col-sm-10">
+                                    <select name="algorithm" id="algorithm" class="form-control" required>
+                                        <option selected>HS256</option>
+                                        <option>HS384</option>
+                                        <option>HS512</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <legend>Public Claims</legend>
+                            <div class="form-group">
+                                <label for="issuer" class="col-sm-2 control-label">Issuer</label>
+                                <div class="col-sm-10">
+                                    <input name="issuer" id="issuer" type="text" class="form-control" placeholder="example.com" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject" class="col-sm-2 control-label">Subject</label>
+                                <div class="col-sm-10">
+                                    <input name="subject" id="subject" type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="audience" class="col-sm-2 control-label">Audience</label>
+                                <div class="col-sm-10">
+                                    <input name="audience" id="audience" type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="expiry" class="col-sm-2 control-label">Expires?</label>
+                                <div class="col-sm-10">
+                                    <input name="expiry" id="expiry" type="text" class="form-control" placeholder="UNIX Timestamp" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nbf" class="col-sm-2 control-label">Not Before</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" name="nbf" id="nbf" placeholder="UNIX Timestamp" />
+                                    <span class="help-block">Makes sure the token is not valid until this timestamp has been reached.</span>
+                                </div>
+                            </div>
+                            <legend>Private Claims</legend>
+                            <div class="form-group">
+                                <div class="col-sm-12 editor">
+                                    <textarea id="private-data" name="private-data" class="form-control"></textarea>
+                                    <span class="help-block">Add your custom JSON data.</span>
+                                </div>
+                            </div>
+                            <legend>Signature</legend>
+                            <div class="form-group">
+                                <label for="secret" class="col-sm-2 control-label">Secret</label>
+                                <div class="col-sm-10">
+                                    <input name="secret" id="secret" type="text" class="form-control" required />
+                                    <span class="help-block"><strong>Don't forget this secret, you will need it to decode the token.</strong></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-success">Encode JWT</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-warning">
+                    <div class="panel-heading">Decode JWT</div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" id="decode-form">
+                            <div class="form-group">
+                                <label for="token" class="col-sm-2 control-label">Token</label>
+                                <div class="col-sm-10">
+                                    <textarea id="token" name="token" class="form-control" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="decode-secret" class="col-sm-2 control-label">Secret</label>
+                                <div class="col-sm-10">
+                                    <input type="text" id="decode-secret" name="decode-secret" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-warning">Decode JWT</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Encode Output</div>
+                    <div class="panel-body">
+                        <legend>Token</legend>
+                        <textarea name="encode-output" id="encode-output" class="form-control input-lg" rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Decode Output</div>
+                    <div class="panel-body">
+                        <legend>Payload</legend>
+                        <div class="form-group">
+                            <textarea name="decode-output" id="decode-output-payload" class="form-control input-lg" rows="10"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/ace/1.1.8/noconflict/ace.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
