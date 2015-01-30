@@ -1,4 +1,4 @@
-[![Project Status](https://stillmaintained.com/Jamesking56/JWT-Generator.png)](https://stillmaintained.com/Jamesking56/JWT-Generator) ![Release version](https://img.shields.io/github/release/Jamesking56/JWT-Generator.svg?style=flat-square) ![Issues open](https://img.shields.io/github/issues/Jamesking56/JWT-Generator.svg?style=flat-square)
+[![Project Status](https://stillmaintained.com/Jamesking56/JWT-Generator.png)](https://stillmaintained.com/Jamesking56/JWT-Generator) ![Release version](https://img.shields.io/github/release/Jamesking56/JWT-Generator.svg?style=flat-square) [![Codacy](https://img.shields.io/codacy/836544c97a5849848dceef49bd5f186e.svg?style=flat-square)]() ![Issues open](https://img.shields.io/github/issues/Jamesking56/JWT-Generator.svg?style=flat-square) [![GitHub forks](https://img.shields.io/github/forks/Jamesking56/JWT-Generator.svg?style=flat-square)]() [![GitHub stars](https://img.shields.io/github/stars/Jamesking56/JWT-Generator.svg?style=flat-square)]()
 # JWT-Generator
 A public web-based JWT encoder / decoder written in PHP. This JWT Generator is available online and available for you to download and install on your own servers / locally. It simply allows you to generate valid JWTs (JSON Web Tokens) and decode a JWT you already have.
 
@@ -10,7 +10,6 @@ To install on your own server, just follow the instructions below. You will need
 
 * Download this Repository and upload the files onto your own server.
 * Run `npm install` to install npm's dependencies.
-* Run `bower install` to install bower's dependencies.
 * Run `composer install --no-dev` to install PHP dependencies.
 * Point your domain to the public folder.
 * Have fun!
@@ -25,7 +24,7 @@ To make some edits and contribute back to this project (i :heart: you), just fol
 * Create a new branch in your own fork of this repository, call it whatever you are working on:
 	* feature/(your-feature)
 	* bug/(your-bugfix)
-* Run `npm install` , `bower install` and `composer install` to install dependencies on your local machine.
+* Run `npm install` and `composer install` to install dependencies on your local machine.
 * Make your edits, committing to your own fork.
 * Create a pull request detailing what you have done.
 * Wait until we review it
