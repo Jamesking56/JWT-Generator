@@ -10,7 +10,6 @@ To install on your own server, just follow the instructions below. You will need
 
 * Download this Repository and upload the files onto your own server.
 * Run `npm install` to install npm's dependencies.
-* Run `bower install` to install bower's dependencies.
 * Run `composer install --no-dev` to install PHP dependencies.
 * Point your domain to the public folder.
 * Have fun!
@@ -25,7 +24,7 @@ To make some edits and contribute back to this project (i :heart: you), just fol
 * Create a new branch in your own fork of this repository, call it whatever you are working on:
 	* feature/(your-feature)
 	* bug/(your-bugfix)
-* Run `npm install` , `bower install` and `composer install` to install dependencies on your local machine.
+* Run `npm install` and `composer install` to install dependencies on your local machine.
 * Make your edits, committing to your own fork.
 * Create a pull request detailing what you have done.
 * Wait until we review it
