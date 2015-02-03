@@ -34,7 +34,14 @@ if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQU
     $data['privateData'] = json_decode($data['privateData'], true);
 
     // Lets encode!
-    $token = $jsonWebToken->encodeToken($secret, $algorithm, $data['issuer'], $data['subject'], $data['audience'], $data['expires'], $data['nbf'], $data['privateData']);
+    $token = $jsonWebToken->encodeToken($secret,
+                                        $algorithm,
+                                        $data['issuer'],
+                                        $data['subject'],
+                                        $data['audience'],
+                                        $data['expires'],
+                                        $data['nbf'],
+                                        $data['privateData']);
     if(!empty($token))
     {
         echo success($token);
